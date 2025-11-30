@@ -1,0 +1,260 @@
+html,
+body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    overflow-x: hidden;
+}
+
+.admin-container {
+    min-height: 100vh;
+    background: #f0f2f5;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    padding-bottom: 40px;
+    width: 100vw;
+}
+
+.dashboard-header {
+    background: #0f4c75;
+    color: white;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.header-title {
+    font-size: 24px;
+    margin: 0;
+    font-weight: 600;
+    padding-left: 20px;
+}
+
+.logout-btn {
+    padding: 8px 15px;
+    background: #e74a3b;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    transition: background-color 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-right: 20px;
+}
+
+.logout-btn:hover {
+    background: #c0392b;
+}
+
+.admin-grid {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 30px;
+    padding: 30px 20px;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.admin-card {
+    background: white;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.control-panel {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    align-items: flex-start;
+}
+
+.card-title {
+    font-size: 20px;
+    font-weight: 600;
+    margin-top: 0;
+    color: #333;
+    border-bottom: 2px solid #f0f2f5;
+    padding-bottom: 10px;
+    width: 100%;
+}
+
+.status-text {
+    color: #6c757d;
+    font-size: 15px;
+}
+
+.refresh-btn {
+    padding: 10px 20px;
+    background: #4e73df;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: bold;
+    transition: 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.refresh-btn:hover:not(:disabled) {
+    background: #2e59d9;
+}
+
+.refresh-btn:disabled {
+    background: #aab5c2;
+    cursor: not-allowed;
+}
+
+.spin {
+    animation: rotate 1s infinite linear;
+}
+
+@keyframes rotate {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.loading-message,
+.no-data-message {
+    text-align: center;
+    padding: 20px;
+    color: #6c757d;
+    font-style: italic;
+}
+
+.transaction-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.transaction-item {
+    background: #f9f9fc;
+    border: 1px solid #e9ecef;
+    border-radius: 10px;
+    padding: 15px;
+    display: grid;
+    grid-template-columns: 2fr 1.5fr;
+    gap: 5px 20px;
+    transition: box-shadow 0.2s;
+}
+
+.transaction-item:hover {
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.tx-details {
+    display: flex;
+    flex-direction: column;
+}
+
+.tx-card-number {
+    font-weight: 600;
+    font-size: 16px;
+    color: #343a40;
+}
+
+.tx-meta {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 15px;
+}
+
+.tx-amount {
+    font-weight: bold;
+    font-size: 18px;
+    color: #0f4c75;
+}
+
+.tx-type {
+    font-size: 12px;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-weight: 700;
+}
+
+.type-topup {
+    background: #d4edda;
+    color: #1cc88a;
+}
+
+.type-withdraw {
+    background: #f8d7da;
+    color: #e74a3b;
+}
+
+.status-success {
+    color: #1cc88a;
+    font-weight: 600;
+}
+
+.status-failed {
+    color: #e74a3b;
+    font-weight: 600;
+}
+
+.tx-reason-date {
+    grid-column: 1 / -1;
+    display: flex;
+    justify-content: space-between;
+    font-size: 12px;
+    color: #888;
+    margin-top: 5px;
+}
+
+.tx-reason {
+    color: #e74a3b;
+    font-weight: 500;
+}
+
+@media (max-width: 992px) {
+    .admin-grid {
+        grid-template-columns: 1fr;
+        padding: 20px;
+        gap: 20px;
+    }
+}
+
+@media (max-width: 576px) {
+    .dashboard-header {
+        padding: 15px 20px;
+    }
+
+    .header-title {
+        font-size: 20px;
+        padding-left: 0;
+    }
+
+    .logout-btn {
+        margin-right: 0;
+    }
+
+    .transaction-item {
+        grid-template-columns: 1fr;
+        gap: 5px;
+    }
+
+    .tx-meta {
+        justify-content: space-between;
+        margin-top: 5px;
+    }
+
+    .tx-reason-date {
+        flex-direction: column;
+        gap: 5px;
+    }
+}

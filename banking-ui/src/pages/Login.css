@@ -1,0 +1,141 @@
+html,
+body,
+#root {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.auth-container {
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(135deg, #0f4c75 0%, #3282b8 100%);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.login-form-card {
+    width: 100%;
+    max-width: 400px;
+    padding: 40px 30px;
+    background: #ffffff;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    animation: fadeIn 0.5s ease-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.form-title {
+    text-align: center;
+    font-size: 28px;
+    font-weight: 700;
+    color: #0f4c75;
+    margin-bottom: 5px;
+}
+
+.form-subtitle {
+    text-align: center;
+    color: #6c757d;
+    margin-bottom: 30px;
+    font-size: 15px;
+}
+
+.input-group {
+    margin-bottom: 20px;
+}
+
+.input-group label {
+    display: block;
+    font-size: 14px;
+    color: #495057;
+    margin-bottom: 8px;
+    font-weight: 600;
+}
+
+.form-input {
+    width: 100%;
+    padding: 12px 15px;
+    border-radius: 8px;
+    border: 1px solid #ced4da;
+    font-size: 16px;
+    transition: all 0.3s ease;
+    box-sizing: border-box;
+    background-color: white;
+    color: black;
+}
+
+.form-input:focus {
+    border-color: #3282b8;
+    box-shadow: 0 0 0 3px rgba(50, 130, 184, 0.2);
+    outline: none;
+}
+
+.submit-btn {
+    width: 100%;
+    padding: 14px;
+    background: #1cc88a;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 18px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+    margin-top: 10px;
+}
+
+.submit-btn:hover {
+    background: #17a673;
+    transform: translateY(-1px);
+}
+
+.submit-btn:active {
+    transform: translateY(0);
+}
+
+.info-tip {
+    text-align: center;
+    margin-top: 25px;
+    font-size: 13px;
+    color: #6c757d;
+    border-top: 1px dashed #e9ecef;
+    padding-top: 15px;
+}
+
+.info-tip span {
+    font-weight: bold;
+    color: #495057;
+    margin-right: 5px;
+}
+
+@media (max-width: 500px) {
+    .login-form-card {
+        padding: 25px 20px;
+        margin: 0 10px;
+    }
+
+    .form-title {
+        font-size: 24px;
+    }
+
+    .submit-btn {
+        padding: 12px;
+        font-size: 16px;
+    }
+}
