@@ -48,69 +48,54 @@ npm run dev
 Runs on:
 http://localhost:5173
 
-Architecture Overview
-         Frontend (React UI)
-                 |
-                 v
-     System1 — Gateway Service (8081)
-                 |
-                 v
-    System2 — Core Banking Service (8082)
-                 |
-             H2 In-Memory DB
+## Architecture and Key Features Overview
 
-Features
-System2 — Core Banking
+This simplified banking system Proof of Concept (POC) utilizes a **two-tier Spring Boot backend** and a **React/TypeScript frontend** to demonstrate secure transaction processing and service routing.
 
-Secure PIN validation (SHA-256 hashing)
+---
 
-In-memory H2 database
+### Architecture Overview
 
-Supports:
+The system employs a client-server architecture with a crucial middle layer for routing. 
 
-Balance check
+| Component | Port | Role in Architecture |
+| :--- | :--- | :--- |
+| **Frontend (React UI)** | `5173` | The client interface for both customers and administrators. |
+| **System1 — Gateway Service** | `8081` | Acts as the **middle-layer API router**. The Frontend communicates *only* with this service. |
+| **System2 — Core Banking Service** | `8082` | Contains all business logic, secure validation, and database access. |
+| **H2 In-Memory DB** | N/A | Local, volatile persistence for System2's data (transactions, balances). |
 
-Withdraw
+---
 
-Top-up
+### Key System Features
 
-Full transaction log
+#### **System2 — Core Banking Service**
+* **Security:** Implements **Secure PIN validation** using **SHA-256 hashing** (no plaintext PINs stored).
+* **Database:** Uses an **In-memory H2 database**.
+* **Functionality:** Supports **Balance check, Withdraw, Top-up**, and maintains a **Full transaction log**.
+* **Card Validation:** Accepts only cards with the prefix **`4`**.
+* **Initialization:** Contains **Seeded demo card** data on startup.
 
-Seeded demo card on startup
+#### **System1 — Gateway Service**
+* **Routing:** **Forwards requests** from the Frontend directly to **System2**.
+* **Pre-validation:** Validates the **card prefix** before forwarding.
+* **Isolation:** Acts as a buffer, ensuring the **Frontend communicates only with System1**.
 
-Accepts only cards with prefix 4
+#### **Banking UI — React Frontend**
+* **Technology:** Built using **React, fully typed with TypeScript**, and styled using **Pure CSS** (no major UI libraries).
+* **Customer View:** Provides a **Customer dashboard** for balance viewing, top-up, withdrawal, and transaction history.
+* **Admin View:** Offers an **Admin dashboard** to view **all transactions**.
+* **Access:** Includes a dedicated **Login page**.
 
-System1 — Gateway Service
+---
 
-Validates card prefix
+### Seed Data (System2)
 
-Forwards requests to System2
+The Core Banking Service loads the following default account upon application startup for testing purposes:
 
-Acts as a middle-layer API router
-
-Frontend communicates only with System1
-
-Banking UI — React Frontend
-
-Login page
-
-Customer dashboard (balance, top-up, withdraw, history)
-
-Admin dashboard (view all transactions)
-
-Pure CSS (no UI libraries)
-
-Fully typed with TypeScript
-
-Seed Data (System2)
-
-System2 loads this card when the application starts:
-
-Card Number: 4123456789012345
-
-PIN: 1234 (hashed in the database)
-
-Balance: 1000
+* **Card Number:** `4123456789012345`
+* **PIN:** `1234` (Stored as SHA-256 hash in the database)
+* **Balance:** `1000`
 
 API Endpoints
 System1 — Gateway (http://localhost:8081
